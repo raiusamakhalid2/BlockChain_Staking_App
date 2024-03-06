@@ -71,6 +71,10 @@ export default function Home() {
 
 
   return (
+    <main>
+    <div className="flex justify-center items-center h-20 bg-blue-500">
+      <h1 className="text-3xl font-bold text-white">STK Staking App</h1>
+    </div>
     <div className="flex justify-center mt-56">
     <div className="p-8 bg-gray-100 rounded-md shadow-md">
     <div className="flex justify-center mt-1">
@@ -114,5 +118,6 @@ export default function Home() {
       </div>
     </div>
   </div>
+  </main>
   );
 }
