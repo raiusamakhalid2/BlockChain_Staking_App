@@ -1,4 +1,7 @@
 "use client";
+import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+
 import { useEffect, useState } from "react";
 import contrectABI from "./Contract/contractABI.json";
 import Button from "./Compnents/Button";
@@ -71,53 +74,64 @@ export default function Home() {
 
 
   return (
-    <main>
-    <div className="flex justify-center items-center h-20 bg-blue-500">
-      <h1 className="text-3xl font-bold text-white">STK Staking App</h1>
+        <ThirdwebProvider desiredChainId={11155111}>
+
+<main>
+  <div className="flex justify-between items-center h-20 bg-blue-500">
+    <div className="flex items-center ml-96">
+      <h1 className="text-3xl font-bold text-white ml-96">STK Staking App</h1>
     </div>
-    <div className="flex justify-center mt-56">
+    <div className="mr-4">
+      <ConnectWallet />
+    </div>
+  </div>
+  <div className="flex justify-center mt-56">
     <div className="p-8 bg-gray-100 rounded-md shadow-md">
-    <div className="flex justify-center mt-1">
-      <div className="bg-gray-100 p-4 rounded-md shadow-md">
-        <h1 className="text-center text-lg font-bold text-blue-500">Balance= {balance ? balance+" STK" : "0 STK"}</h1>
+      <div className="flex justify-center mt-1">
+        <div className="bg-gray-100 p-4 rounded-md shadow-md">
+          <h1 className="text-center text-lg font-bold text-blue-500">Balance= {balance ? balance+" STK" : "0 STK"}</h1>
+        </div>
       </div>
-    </div>
-    
+
       <div className="flex items-center mb-4 mt-5">
-      <InputBox onChange={(e) => setAddress(e.target.value)} value={address} placeholder={"Enter your address..."}/>
-      <Button btntext='Balance Of' onClick={BalanceOf} />
+        <InputBox onChange={(e) => setAddress(e.target.value)} value={address} placeholder={"Enter your address..."}/>
+        <Button btntext='Balance Of' onClick={BalanceOf} />
       </div>
 
       <div className="flex items-center mb-4">
-      <InputBox onChange={(e) => setStakeamount(e.target.value)} value={stakeamount} placeholder={"Enter your amount..."}/>
-      <Button btntext='Stake' onClick={Stake} />
+        <InputBox onChange={(e) => setStakeamount(e.target.value)} value={stakeamount} placeholder={"Enter your amount..."}/>
+        <Button btntext='Stake' onClick={Stake} />
       </div>
 
       <div className="flex items-center mb-4">
-      <InputBox onChange={(e) => setUnstakeamount(e.target.value)} value={unstakeamount} placeholder={"Enter your amount..."}/>
-      <Button btntext='Unstake' onClick={UnStake} />
+        <InputBox onChange={(e) => setUnstakeamount(e.target.value)} value={unstakeamount} placeholder={"Enter your amount..."}/>
+        <Button btntext='Unstake' onClick={UnStake} />
       </div>
 
       <div className="flex flex-row items-center">
-      <div className="flex flex-col items-center">
-        <Button btntext='Staking Balances' onClick={StakingBalance} />
-        <p>{stakingbalance}</p>
+        <div className="flex flex-col items-center">
+          <Button btntext='Staking Balances' onClick={StakingBalance} />
+          <p>{stakingbalance}</p>
         </div>
         <div className="flex flex-col items-center">
-        <Button btntext='Claim' onClick={ClaimReward} />
-        <p></p>
+          <Button btntext='Claim' onClick={ClaimReward} />
+          <p></p>
         </div>
         <div className="flex flex-col items-center">
-        <Button btntext='Calculate Reward' onClick={CalculateReward} />
-        <p>{calcreward}</p>
+          <Button btntext='Calculate Reward' onClick={CalculateReward} />
+          <p>{calcreward}</p>
         </div>
         <div className="flex flex-col items-center">
-        <Button btntext='Withdrawal Status' onClick={WithdrawalStatus} />
-        <p>{withdrawalstatus}</p>
+          <Button btntext='Withdrawal Status' onClick={WithdrawalStatus} />
+          <p>{withdrawalstatus}</p>
         </div>
       </div>
     </div>
   </div>
-  </main>
+</main>
+
+
+          </ThirdwebProvider>
+
   );
 }
