@@ -29,9 +29,6 @@ export default function App() {
 
 
 
-
-
-
   useEffect(()=>{
     const load = async () => {
 
@@ -58,13 +55,6 @@ export default function App() {
     return () => window.ethereum?.removeListener('chainChanged', handleChainChange);
   }, []);
 
-  if(11155111 !== chainId){
-    return (
-        <div className=' justify-center flex content-center items-center'>
-            <Button onClick={() => {switchChain("0xaa36a7")}}
-            btntext={'Switch To Network'}/>
-        </div>
-    )}
 
 
   const ClaimReward = async () => {
@@ -119,6 +109,16 @@ export default function App() {
       <ConnectWallet />
     </div>
   </div>
+  {chainId !== 11155111 ? (
+      <div className='flex justify-center mt-8'>
+        <div className='bg-red-200 p-4 rounded-md shadow-md'>
+          <p className='text-red-700'>You're on the wrong network. Please switch to the correct network to use this application.</p>
+          <div className='flex justify-center mt-2'>
+            <Button onClick={() => switchChain("0xaa36a7")} btntext={'Switch To Network'}/>
+          </div>
+        </div>
+      </div>
+    ) : (
   <div className="flex justify-center mt-56">
     <div className="p-8 bg-gray-100 rounded-md shadow-md">
       <div className="flex justify-center mt-1">
@@ -162,6 +162,7 @@ export default function App() {
       </div>
     </div>
   </div>
+  )}
 </main>
 
 
